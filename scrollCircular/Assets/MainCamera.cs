@@ -5,9 +5,14 @@ using UnityEngine;
 public class MainCamera : MonoBehaviour {
 
     public Clock clock;
+	Camera mainCamera;
 
 	void Start () {
-		
+		mainCamera = GetComponent<Camera> ();
+	}
+	public void ChangeColor(Color color)
+	{
+		mainCamera.backgroundColor = color;
 	}
 	//void Update () {
        // ClockItem clockItem = clock.GetNearestItem(transform.position.z);

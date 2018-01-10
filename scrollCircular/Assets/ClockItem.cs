@@ -11,12 +11,13 @@ public class ClockItem : MonoBehaviour {
     float separationY;
     public float offsetToAttach;
     public float smoothZoom;
-	public TextMesh field;
 	public GameObject overGO;
 	public SpriteRenderer thumb;
+	public MeshRenderer bgAsset;
 	int id;
+	Color color;
 
-    public void Init(int id)
+    public void Init(int id, Color color)
     {        
 		this.id = id;
 		UnSelected ();
@@ -24,11 +25,13 @@ public class ClockItem : MonoBehaviour {
         transform.localPosition = new Vector3(0, 0, Data.Instance.settings.itemsDepthSeparation * id);
         transform.Rotate(new Vector3(0, 0, (360/Data.Instance.settings.itemsInRound) * -id));
 		asset.transform.Rotate(new Vector3(0, 0, (-1*360/Data.Instance.settings.itemsInRound) * -id));
-		if (field != null) {
-			field.text ="";
+		if (thumb != null) {
 			LoadImage ();
 		}
+		if (bgAsset != null)
+			bgAsset.material.color = color;
     }
+
     public void SetSelected()
     {
         float scaler = 1.5f;
