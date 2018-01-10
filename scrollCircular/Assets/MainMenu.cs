@@ -21,6 +21,8 @@ public class MainMenu : Screen {
 
 	public override void OnButtonClicked(ClockButton.types type)
 	{
+		if (Clock.Instance.inputManager.state == InputManager.states.SLIDING)
+			return;
 		switch (type) {
 		case ClockButton.types.MESSAGES:
 			Clock.Instance.scroller.Init (ScrollScreen.types.MESSAGES, messagesButton.color);

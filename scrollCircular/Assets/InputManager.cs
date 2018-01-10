@@ -79,7 +79,7 @@ public class InputManager : MonoBehaviour {
 				if (screensManager.activeScreen.isPopup && pos.x < 0)
 					return;
 				targetToSwipe.transform.localPosition = pos;
-
+				state = states.SLIDING;
 			}
 		}
 		else if (Input.GetMouseButtonUp (0)) {
