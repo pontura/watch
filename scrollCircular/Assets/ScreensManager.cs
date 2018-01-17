@@ -35,12 +35,13 @@ public class ScreensManager : MonoBehaviour {
 	}
 	public void ClosePopup()
 	{
-		print ("ClosePopup");
 		Screen lastOpenedScreen = activeScreen.ScreenToLeft;
 		activeScreen.SetState (false);
 		activeScreen = lastOpenedScreen;
 		activeScreen.SetState (true);
 		activeScreen.transform.localPosition = Vector2.zero;
+		SetOnActiveScreen ();
+		Clock.Instance.inputManager.OnPopClose ();
 	}
 	void SetActiveScreenOn()
 	{
@@ -52,6 +53,7 @@ public class ScreensManager : MonoBehaviour {
 	}
 	void SetOnActiveScreen()
 	{
+		print ("SetOnActiveScreen");
 		activeScreen.SetState (true);
 		ActivateRightLeft (activeScreen.ScreenToRight, activeScreen.ScreenToLeft);
 
@@ -70,6 +72,7 @@ public class ScreensManager : MonoBehaviour {
 	{
 		canScrollRight = false;
 		canScrollLeft = false;
+		print (activeScreen + " r: " + right + " l: " + left);
 		if (right != null) {
 			canScrollRight = true;
 			right.SetState (true);
@@ -80,7 +83,7 @@ public class ScreensManager : MonoBehaviour {
 			left.SetState (true);
 
 			//muy trucho!
-			if(!activeScreen.isPopup || activeScreen.name != "Call" )
+			if(!activeScreen.isPopup || activeScreen.name != "a" )
 				left.transform.localPosition = new Vector2 (-_width, 0);
 		}
 	}

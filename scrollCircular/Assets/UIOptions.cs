@@ -12,6 +12,11 @@ public class UIOptions : MonoBehaviour {
 	void Start()
 	{
 		panel.SetActive (false);
+		Events.OnSwipe += OnSwipe;
+	}
+	void OnSwipe(bool isSwiping)
+	{
+		panel.SetActive (false); 	
 	}
 	public void Open(ClockItem clockItem)
 	{
@@ -27,8 +32,6 @@ public class UIOptions : MonoBehaviour {
 	}
 	void DelayedClose()
 	{
-		if (GetComponent<ScreensManager> ().activeScreen.isPopup)
-			return;
 		panel.SetActive (false);
 	}
 	void OnEnable()

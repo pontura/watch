@@ -34,7 +34,7 @@ public class ClockItem : MonoBehaviour {
 
     public void SetSelected()
     {
-        float scaler = 1.5f;
+       // float scaler = 1.5f;
        // transform.localScale = new Vector3(scaler, scaler, scaler);
 		overGO.SetActive (true);
 		Color c = new Color (GetRandomColor(),GetRandomColor(),GetRandomColor(), 0.5f);
@@ -42,6 +42,10 @@ public class ClockItem : MonoBehaviour {
 		//c.a = 1;
 		//meshRendererBorder.material.color = c;
     }
+	public void SetActiveReal()
+	{
+		//GetComponent<Animation> ().Play ("scrollButtonSelected");
+	}
 	float GetRandomColor()
 	{
 		return 0;
@@ -50,7 +54,6 @@ public class ClockItem : MonoBehaviour {
 	}
     public void UnSelected()
     {
-        transform.localScale = Vector3.one;
 		overGO.SetActive (false);
     }
     public void UpdatePosition(float distanceFromCamera)

@@ -1,2 +1,4 @@
+cd C:/Users/pontura/AppData/Local/Android/sdk/platform-tools/
+
 adb forward tcp:4445 localabstract:/adb-hub
 adb connect 127.0.0.1:4445

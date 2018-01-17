@@ -9,10 +9,17 @@ public class MainCamera : MonoBehaviour {
 
 	void Start () {
 		mainCamera = GetComponent<Camera> ();
+		Events.OnSwipe += OnSwipe;
 	}
 	public void ChangeColor(Color color)
 	{
 		mainCamera.backgroundColor = color;
+	}
+	void OnSwipe(bool ison)
+	{
+		if (!ison) {
+			mainCamera.targetTexture = null;
+		}
 	}
 	//void Update () {
        // ClockItem clockItem = clock.GetNearestItem(transform.position.z);

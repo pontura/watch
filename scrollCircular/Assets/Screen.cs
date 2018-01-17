@@ -18,12 +18,17 @@ public class Screen : MonoBehaviour {
 	void OnEnable()
 	{
 		Events.OnButtonClicked += OnButtonClicked;
+		Events.OnSwipe += OnSwipe;
 		OnScreenEnable ();
 	}
 	void OnDisable()
 	{
 		Events.OnButtonClicked -= OnButtonClicked;
+		Events.OnSwipe -= OnSwipe;
 		OnScreenDisable ();
+	}
+	public virtual void OnSwipe(bool isSwiping)
+	{
 	}
 	public virtual void OnButtonClicked(ClockButton.types type)
 	{

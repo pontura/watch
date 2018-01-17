@@ -13,7 +13,8 @@ public class InputManager : MonoBehaviour {
 		SNAPPING_SLIDE,
 		ON_POPUP
 	}
-		
+	int clockWidth = 400;
+	int offsetToSwipe = 60;
 	float snapValue;
 	float GotoSnapValue;
 	public Plane playerPlane;
@@ -35,16 +36,20 @@ public class InputManager : MonoBehaviour {
 		if (state == states.ON_POPUP)
 			UpdateSwipe ();
 		else if (state == states.SNAPPING_SLIDE) 
-			Snap ();
-		else if(!screensManager.activeScreen.isScroll)
-			UpdateSwipe ();
-		else if(screensManager.activeScreen.isScroll)
+			Snap ();			
+		else if(!insideSwipeArea && screensManager.activeScreen.isScroll)
 			UpdateScroll ();
+
+		UpdateSwipe ();
 	}
 	public void OnPopUp()
 	{
 		state = states.ON_POPUP;
 		clock.scroller.Stopped ();
+	}
+	public void OnPopClose()
+	{
+		state = states.IDLE;
 	}
 	public void StartScroll()
 	{
@@ -52,12 +57,20 @@ public class InputManager : MonoBehaviour {
 		clock.scroller.UpdateSlide (-180);
 		state = states.SCROLL;
 	}
+	bool insideSwipeArea;
 	void UpdateSwipe()
 	{
 		if (Input.GetMouseButtonDown (0) ) {
 			startingX = Input.mousePosition.x;
+			print (startingX);
+			print (Mathf.Abs (startingX - (clockWidth / 2)));
+			print ("offsetToSwipe: " + offsetToSwipe);
+			if (Mathf.Abs (startingX - (clockWidth / 2)) > (clockWidth/2)-offsetToSwipe) {
+				Events.OnSwipe (true);
+				insideSwipeArea = true;
+			}
 			actualPos = 0;
-		} else if (Input.GetMouseButton (0)) {
+		} else if (Input.GetMouseButton (0) && insideSwipeArea) {
 			float realPos =(Input.mousePosition.x - startingX);
 			float diff = (actualPos - realPos); //*(1+ (Time.deltaTime*4));
 			if (diff != 0) {	
@@ -82,7 +95,8 @@ public class InputManager : MonoBehaviour {
 				state = states.SLIDING;
 			}
 		}
-		else if (Input.GetMouseButtonUp (0)) {
+		else if (Input.GetMouseButtonUp (0) && insideSwipeArea) {
+			insideSwipeArea = false;
 			if (targetToSwipe.transform.localPosition.x > snapValue/6)
 				ActivateSwipe (1);
 			else if (targetToSwipe.transform.localPosition.x < -snapValue/6)
@@ -116,6 +130,7 @@ public class InputManager : MonoBehaviour {
 			else if (targetToSwipe.transform.localPosition.x > 100)
 				screensManager.ActivatePrev ();
 			targetToSwipe.transform.localPosition = Vector3.zero;
+			Events.OnSwipe (false);
 		}
 	}
 	bool isNewMenu;
