@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4549653080697638}
-  - component: {fileID: 114239752969500968}
-  - component: {fileID: 114290095418635826}
+  - component: {fileID: 114736105130975160}
+  - component: {fileID: 114067539184853320}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114239752969500968
+--- !u!114 &114067539184853320
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,11 +49,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1814040616963990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47339eb1794354c4489c204da3349740, type: 3}
+  m_Script: {fileID: 11500000, guid: d8b569ecb3fe4704baa9e779a6996a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 114290095418635826}
---- !u!114 &114290095418635826
+--- !u!114 &114736105130975160
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -61,7 +60,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1814040616963990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c38941f2f23a43744a01ab4de684a308, type: 3}
+  m_Script: {fileID: 11500000, guid: f8211cea9c765b44790e98e95d67e5fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPosition: {x: 0, y: 0, z: 0}
+  playerData: {fileID: 114067539184853320}

@@ -29,7 +29,7 @@ public class Ball : ObjectInScene {
 	{
 		rb.GetComponent<Rigidbody> ().isKinematic = false;
 	}
-	void Update()
+	void ____Update()
 	{
 		float moveHorizontal = Input.acceleration.x;
 		float  moveVertical = Input.acceleration.y;                        

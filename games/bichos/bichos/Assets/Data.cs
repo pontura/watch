@@ -21,5 +21,9 @@ public class Data : MonoBehaviour
 		mInstance = this; 
         DontDestroyOnLoad(this.gameObject);
     }
+	void Start()
+	{
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+	}
 
 }
